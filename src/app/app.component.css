@@ -1,0 +1,63 @@
+mat-form-field {
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  padding: 50px;
+}
+
+.main-content {
+  border: 1px solid black;
+}
+
+
+.content {
+  margin: 50px 150px;
+}
+
+.task-date-select-flx {
+  display: flex;
+}
+
+.main-content {
+  width: 50%;
+}
+
+.task-date-select {
+  width: 45% !important;
+}
+
+label {
+  font-weight: 700;
+}
+
+.title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.btn-add {
+  width: 100%;
+  background-color: green;
+  color: aliceblue;
+}
+
+.content-todo-list {
+  border: 0.5px solid black;
+}
+
+.checkbox-todo-list {
+  height: 50px;
+  position: relative;
+  display: flex;
+  border: .5px solid black;
+}
+
+.btn-dtl-remove {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
