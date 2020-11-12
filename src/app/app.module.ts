@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { PlatformModule } from '@angular/cdk/platform';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +14,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
-
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
     MatDatepickerModule,
     MatButtonModule,
     MatNativeDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatExpansionModule,
+    PlatformModule
   ],
   providers: [],
   bootstrap: [AppComponent]

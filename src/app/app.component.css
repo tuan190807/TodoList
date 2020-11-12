@@ -9,6 +9,7 @@ mat-form-field {
 
 .main-content {
   border: 1px solid black;
+  width: 50%;
 }
 
 
@@ -20,9 +21,6 @@ mat-form-field {
   display: flex;
 }
 
-.main-content {
-  width: 50%;
-}
 
 .task-date-select {
   width: 45% !important;
