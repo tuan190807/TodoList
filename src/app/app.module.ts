@@ -12,14 +12,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { AddTaskComponent } from './add-task/add-task.component';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddTaskComponent,
     ToDoListComponent
   ],
   imports: [

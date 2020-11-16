@@ -1,12 +1,53 @@
 <div class="container">
   <div class="main-content">
     <div class="content">
-      <app-add-task></app-add-task>
+      <div class="title">New Task</div>
+      <form action="" [formGroup]="formTodo">
+        <div class="task-title list-task">
+          <mat-form-field appearance="outline">
+            <mat-label>Add new task...</mat-label>
+            <input matInput formControlName="name" required>
+          </mat-form-field>
+          <div *ngIf="form.name.invalid && (form.name.dirty || form.name.touched)">
+            <mat-error *ngIf="form.name.errors && form.name.errors.required">New task is required!</mat-error>
+          </div>
+        </div>
+        <div class="task-description list-task">
+          <label>Description</label>
+          <mat-form-field appearance="outline">
+            <textarea matInput formControlName="description" rows="20" cols="30"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="task-date-select-flx list-task">
+          <div class="task-date-select" style="margin-right: 10%;">
+            <label>Due Date</label>
+            <mat-form-field appearance="outline">
+              <input matInput formControlName="date" [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="task-date-select">
+            <label>Proirity</label>
+            <mat-form-field appearance="outline">
+              <mat-select formControlName="proirity">
+                <mat-option [value]="1">Normal</mat-option>
+                <mat-option [value]="2">Low</mat-option>
+                <mat-option [value]="3">High</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button class="btn-add" (click)="save()" mat-flat-button>Add</button>
+        </div>
+      </form>
+
     </div>
   </div>
   <div class="main-content">
     <div class="content">
-      <app-to-do-list></app-to-do-list>
+      <app-to-do-list [arrListTask]="listTask"></app-to-do-list>
     </div>
   </div>
 </div>
