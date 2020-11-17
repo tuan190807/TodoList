@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-to-do-list',
@@ -10,14 +12,15 @@ export class ToDoListComponent implements OnInit {
 
   @Input() arrListTask: any
   formTodoList: FormGroup;
-  checked = false;
+  lstChecked = [];
+  keySearch: string;
   get form() { return this.formTodoList.controls; }
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snack: MatSnackBar
   ) { }
   ngOnInit() {
     this.initForm();
-    console.log(this.arrListTask)
   }
   initForm() {
     this.formTodoList = this.fb.group({
@@ -52,9 +55,28 @@ export class ToDoListComponent implements OnInit {
       this.arrListTask.splice(listTG.indexOf(id), 1);
     }
     localStorage.setItem("arrTasks", JSON.stringify(this.arrListTask));
+    this._snack.open(`Xóa task có id: ${id} thành công!`, "", { duration: 5000 });
   }
-  onChange(name: string, $event) {
-    this.arrListTask.map(s => s.name)[name] = $event.checked;
+  onChange(item: any, $event: MatCheckboxChange) {
+    if ($event.checked) {
+      this.lstChecked.push(item);
+    } else {
+      this.lstChecked.forEach((s, i) => {
+        if (s.id == item.id) {
+          this.lstChecked.splice(i, 1);
+        }
+      })
+    }
+  }
+  removeAction() {
+    const arrId = this.arrListTask.map(s => s.id);
+    const arrRemove = this.lstChecked.map(s => s.id);
+    arrRemove.forEach(item => {
+      if (arrId.includes(item)) {
+        this.arrListTask.splice(arrId.indexOf(item), 1);
+      }
+    })
+    localStorage.setItem("arrTasks", JSON.stringify(this.arrListTask));
   }
 
 }

@@ -39,7 +39,8 @@
           </div>
         </div>
         <div>
-          <button class="btn-add" (click)="save()" mat-flat-button>Add</button>
+          <button class="btn-add" [disabled]="form.name.errors && form.name.errors.required" (click)="save()"
+            mat-flat-button>Add</button>
         </div>
       </form>
 

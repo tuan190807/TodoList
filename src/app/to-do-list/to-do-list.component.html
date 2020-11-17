@@ -3,19 +3,19 @@
 <div class="search">
   <mat-form-field appearance="outline">
     <mat-label>Search task...</mat-label>
-    <input matInput>
+    <input matInput name="search" type="text" [(ngModel)]="keySearch" autocomplete="off">
   </mat-form-field>
 </div>
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let item of arrListTask">
+  <mat-expansion-panel *ngFor="let item of arrListTask | filter: keySearch">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <section>
-          <mat-checkbox (change)="onChange(item.name,$event)">{{item.name}}</mat-checkbox>
+          <mat-checkbox (change)="onChange(item,$event)">{{item.name}}</mat-checkbox>
         </section>
       </mat-panel-title>
       <mat-panel-description>
-        <button mat-flat-button color='primary' (click)="detail(item.id)" style="margin-right: 5px;">Detail</button>
+        <button mat-flat-button color='primary' (click)="detail(item)" style="margin-right: 5px;">Detail</button>
         <button mat-flat-button color='warn' (click)="remove(item.id)">Remove</button>
       </mat-panel-description>
     </mat-expansion-panel-header>
@@ -58,10 +58,15 @@
             </div>
           </div>
           <div>
-            <button class="btn-add" mat-flat-button (click)="update(item)">Update</button>
+            <button class="btn-add" mat-flat-button (click)="update(item.id)">Update</button>
           </div>
         </div>
       </div>
     </form>
   </mat-expansion-panel>
 </mat-accordion>
+
+<div class="action" *ngIf="lstChecked.length > 0 && arrListTask.length > 0">
+  <button mat-flat-button color='primary' style="margin-right: 5px;">Done</button>
+  <button mat-flat-button color='warn' (click)="removeAction()">Remove</button>
+</div>

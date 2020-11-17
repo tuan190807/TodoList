@@ -4,5 +4,4 @@ export class taskDTO {
     description: string;
     date: string;
     proirity: number;
-    checked: boolean;
 }

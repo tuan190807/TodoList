@@ -14,6 +14,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatNativeDateModule,
     MatCheckboxModule,
     MatExpansionModule,
-    PlatformModule
+    PlatformModule,
+    Ng2SearchPipeModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

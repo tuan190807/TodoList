@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
+import { taskDTO } from './list-task-dto';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,15 @@ import { Location } from '@angular/common';
 export class AppComponent implements OnInit {
   listTask = [];
   formTodo: FormGroup;
-  checked = false;
+  item = {} as taskDTO;
   get form() { return this.formTodo.controls; }
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private _snack: MatSnackBar
   ) { }
   ngOnInit() {
     this.initForm();
+    this.listTask = JSON.parse(localStorage.getItem('arrTasks'));
   }
   initForm() {
     this.formTodo = this.fb.group({
@@ -28,18 +30,17 @@ export class AppComponent implements OnInit {
     });
   }
   save() {
-    let item = {
+    this.item = {
       id: this.listTask.length < 1 ? 1 : this.listTask.length + 1,
       name: this.formTodo.value.name,
       description: this.formTodo.value.description,
       date: this.formTodo.value.date,
       proirity: this.formTodo.value.proirity,
-      checked: false
     }
-    this.listTask.push(item);
-    console.log(this.listTask)
+    this.listTask.push(this.item);
     const arrListTask = JSON.stringify(this.listTask);
     localStorage.setItem("arrTasks", arrListTask);
+    this._snack.open(`Thêm task ${this.formTodo.value.name} thành công!`, "", { duration: 5000 });
     this.initForm();
   }
 

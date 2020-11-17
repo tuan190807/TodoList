@@ -8,13 +8,14 @@ mat-form-field {
 }
 
 .main-content {
+  position: relative;
   border: 1px solid black;
   width: 50%;
 }
 
 
 .content {
-  margin: 50px 150px;
+  margin: 50px 60px;
 }
 
 .task-date-select-flx {
@@ -58,4 +59,28 @@ label {
   position: absolute;
   right: 10px;
   top: 10px;
+}
+
+@media(max-width: 900px) {
+  .main-content {
+    position: relative;
+    border: 1px solid black;
+    width: 100%;
+  }
+
+  .container {
+    display: block;
+    padding: 50px;
+    overflow: auto;
+  }
+}
+
+@media(max-width: 500px) {
+  .content {
+    margin: 50px 5px;
+  }
+
+  .container {
+    padding: 5px;
+  }
 }
